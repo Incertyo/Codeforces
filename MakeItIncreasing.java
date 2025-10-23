@@ -5,50 +5,40 @@ public class MakeItIncreasing {
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     int loop = sc.nextInt();
-    while(loop -->0){
-        int n= sc.nextInt();
-        long[]arr = new long[n];
-        for(int i=0;i<n;i++){
+    while (loop-- > 0) {
+        int n = sc.nextInt();
+        long[] arr = new long[n];
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextLong();
         }
-        boolean chk=false;
-        for(int j=0;j<n-1;j++){
-            if(arr[j]<=arr[j+1]){
-                chk=true;
-                break;
-            }
-        }
-        if(n==1){
+        boolean flag = true;
+        int c = 0;
+        if (n == 1) {
             System.out.println(0);
+        } else  {
 
-        }
-
-        else if (!chk){
-            System.out.println(-1);
-        }
-        else{
-            int c=0;
-            while(chk){
-                for(int i=n-1;i>0;i--){
-                    if(arr[i]<=arr[i-1]){
-                        arr[i-1]/=2;
-                        c++;
-                    }
-                }
-                for(int j=0;j<n-1;j++){
-                    if(arr[j]<arr[j+1]){
-                        chk=false;
+            for (int i = n - 2; i >=0; i--) {
+                while (arr[i+1] <= arr[i ]) {
+                    if(arr[i+1]==0){
+                        flag = false;
                         break;
                     }
-                    if(arr[j]==0&&arr[j+1]==0){
-                        System.out.println(-1);
-                        break;
-                    }
+                    arr[i ] /= 2;
+                    c++;
                 }
-
+                if(!flag){
+                    break;
+                }
             }
-            System.out.println(c);
+            if(flag){
+
+                System.out.println(c);
+            }
+            else{
+                System.out.println(-1);
+            }
         }
+
 
     }
 }}
